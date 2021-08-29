@@ -5,7 +5,6 @@ import { validateAddress } from '~utils';
 import * as S from './styles';
 import { AddressModalProps } from './types';
 
-
 export function AddressModal({ isOpen, closeModal, setAddressStoraged }: AddressModalProps) {
   const [address, setAddress] = useState('');
   const [isValidAddress, setIsValidAddress] = useState(false);
@@ -31,32 +30,32 @@ export function AddressModal({ isOpen, closeModal, setAddressStoraged }: Address
   };
 
   return (
-    <S.AddressStyledModal isOpen={isOpen} isValidAddress={isValidAddress}>
-      <header>
+    <S.AddressStyledModal isOpen={isOpen}>
+      <S.Header>
         <h2>Adicione um endereço para entrega</h2>
-      </header>
-      <section>
-        <form onSubmit={handleAddAddress}>
+      </S.Header>
+      <S.Section>
+        <S.Form onSubmit={handleAddAddress}>
           <input
             autoFocus
             onChange={handleValidateAddress}
             defaultValue=""
             placeholder="Ex.: Av. Ímpares, Q. 1, L. 3, Nº. 5, Setor Sete"
           />
-        </form>
-        <aside>
+        </S.Form>
+        <S.Aside>
           <p>Lembrado que um bom endereço precisa:</p>
           <ul>
             <li>Começar com tipo e nome de Logradouro</li>
             <li>Informar os Complementos (Q/L/Apt/Nº)</li>
             <li>E finalizar com Setor/Bairro e/ou CEP</li>
           </ul>
-        </aside>
-      </section>
-      <footer>
+        </S.Aside>
+      </S.Section>
+      <S.Footer isValidAddress={isValidAddress}>
         <button onClick={closeModal}>Cancelar</button>
         <button onClick={handleAddAddress} disabled={!isValidAddress}>Adicionar</button>
-      </footer>
+      </S.Footer>
     </S.AddressStyledModal>
   );
 }
