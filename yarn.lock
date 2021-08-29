@@ -9393,13 +9393,6 @@ react-simple-typewriter@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-simple-typewriter/-/react-simple-typewriter-3.0.0.tgz#80ac4e52bc4421cc23c6744847e447810c613db1"
   integrity sha512-asT0tTweJ2ntMU1VRKHz5LvzkF/bCnuh2XpKaTnz5aFp3DS044LW2IbeyDxuRaYgrxe7Op4E4yub3W0sKLCEcg==
 
-react-switch@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/react-switch/-/react-switch-6.0.0.tgz#bd4a2dea08f211b8a32e55e8314fd44bc1ec947e"
-  integrity sha512-QV3/6eRK5/5epdQzIqvDAHRoGLbCv/wDpHUi6yBMXY1Xco5XGuIZxvB49PHoV1v/SpEgOCJLD/Zo43iic+aEIw==
-  dependencies:
-    prop-types "^15.7.2"
-
 react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.npmjs.org/react/-/react-17.0.2.tgz"

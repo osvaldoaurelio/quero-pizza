@@ -17,10 +17,7 @@ export function Perfil() {
       <S.PerfilContainer>
         <Header />
 
-        <Main
-          name={name}
-          lastOrders={lastOrders}
-        />
+        <Main name={name} lastOrders={lastOrders} />
 
         <Footer />
       </S.PerfilContainer>

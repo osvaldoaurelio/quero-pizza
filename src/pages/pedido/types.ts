@@ -8,8 +8,6 @@ type BagItem = {
 type Items = {
   id?: number;
   name: string;
-  hasStuffedEdge?: boolean;
-  stuffedEdgePrice?: number;
   description: string;
   img: string;
   price: number;

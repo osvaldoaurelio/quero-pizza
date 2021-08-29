@@ -16,15 +16,13 @@ export function Pedido() {
 
   const history = useHistory<BagItem>();
 
-  const [bagStoraged = [], setBagStoraged] = useLocalStorage<BagItem[]>('bag', []);
-
-  const [stuffedEdgeText, setStuffedEdgeText] = useState<string>('borda recheada');
-  const [hasStuffedEdge, setHasStuffedEdge] = useState<boolean>(false);
   const [itemTotalPrice, setItemTotalPrice] = useState<string>('');
   const [itemQuantity, setItemQuantity] = useState<number>(1);
   const [redirect, setRedirect] = useState<boolean>(false);
   const [psText, setPsText] = useState<string>('');
-
+  
+  const [bagStoraged = [], setBagStoraged] = useLocalStorage<BagItem[]>('bag', []);
+  
   const handleQuantity = (action: string) => {
     setItemQuantity((prev) => {
       if (action === '-' && prev >= 1) return prev - 1;
@@ -40,27 +38,19 @@ export function Pedido() {
       return [...bagStoraged, {
         name: item?.name,
         itemTotalPrice,
-        psText: `${psText}
-        
-        ${hasStuffedEdge ? `Com ${stuffedEdgeText}` : ''}`,
+        psText,
         itemQuantity,
       }];
     });
   };
 
   useEffect(() => {
-    setStuffedEdgeText(() => itemQuantity === 1 ? 'borda recheada' : 'bordas recheadas')
-  }, [itemQuantity]);
-
-  useEffect(() => {
     redirect && history.push('/order');
   }, [redirect, history]);
 
   useEffect(() => {
-    const stuffedEdgePrice = (hasStuffedEdge ? item?.stuffedEdgePrice : 0) ?? 0;
-
-    setItemTotalPrice(numberFormat.toMoney(itemQuantity * (item?.price + stuffedEdgePrice)));
-  }, [itemQuantity, item?.price, hasStuffedEdge, item?.stuffedEdgePrice]);
+    setItemTotalPrice(numberFormat.toMoney(itemQuantity * item?.price));
+  }, [itemQuantity, item?.price]);
 
   return (
     item ? (
@@ -74,13 +64,6 @@ export function Pedido() {
         />
 
         <Main
-          stuffedEdgeText={stuffedEdgeText}
-          hasStuffedEdge={hasStuffedEdge}
-          stuffedEdgePrice={numberFormat.toMoney(
-            itemQuantity * (item.stuffedEdgePrice ?? 0)
-          )}
-          hasStuffedEdgeOptions={item.hasStuffedEdge}
-          setHasStuffedEdge={setHasStuffedEdge}
           psText={psText}
           setPsText={setPsText}
         />

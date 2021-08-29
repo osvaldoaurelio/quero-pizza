@@ -72,8 +72,6 @@ export const menu = [
         description: 'Uma descrição aí que não diz nada, só pra encher linguiça e nada mais. É isso, acabou, não tem mais jeito...',
         img: 'https://www.correio24horas.com.br/fileadmin/_processed_/3/f/csm_shutterstock_644608951_bc24fdfd85.jpg',
         thumb: 'https://comofazeremcasa.net/wp-content/uploads/2020/06/desenho-de-pizza-para-pintar-e-colorir-10.jpg',
-        hasStuffedEdge: true,
-        stuffedEdgePrice: 5.0,
         price: 20.0
       },
       {
