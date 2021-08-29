@@ -9,7 +9,7 @@ export const theme: DefaultTheme = {
 
     background: '#fafafa',
 
-    textOnPrimary: '#dedede',
+    textOnPrimary: '#fdfeff',
     textOnSecondary: '#212121',
 
     gray_1: '#ccc',

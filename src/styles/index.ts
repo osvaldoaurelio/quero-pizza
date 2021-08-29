@@ -8,16 +8,53 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', sans-serif;
   }
 
-  a {
-    text-decoration: none;
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
     background: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.gray_4};
+    min-height: 100vh;
   }
-  
-  h1 {
-    color: ${({ theme }) => theme.colors.primary};
+
+  body, div, main, section, article, header, footer, button {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input[type=number]:-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+  }
+    
+  input[type=number] { 
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  input:focus-visible, textarea:focus-visible {
+    outline: 0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+
+    &.active {
+      box-shadow: -2px 4px 8px #0008 inset;
+      color: ${({ theme }) => theme.colors.primary};
+      font-weight: bold;
+    }
+  }
+
+  a, button {
+    transition: all 0.3s;
+  }
+
+  * + svg {
+    margin-inline-start: 0.5rem;  
   }
 `;

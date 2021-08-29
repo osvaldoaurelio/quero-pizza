@@ -1,5 +1,5 @@
-type Props = {
+type ProviderProps = {
   children: React.ReactNode;
 };
 
-export type { Props };
+export type { ProviderProps };

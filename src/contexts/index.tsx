@@ -1,7 +1,7 @@
 import { StyledComponentsProvider } from './theme';
-import { Props } from './types';
+import { ProviderProps } from './types';
 
-export function ProviderWrapper({ children }: Props) {
+export function ProviderWrapper({ children }: ProviderProps) {
   return (
     <StyledComponentsProvider>
       {children}

@@ -1,10 +1,10 @@
 import { ThemeProvider } from 'styled-components';
 
-import { Props } from './types';
+import { ProviderProps } from './types';
 import { theme } from '~styles/themes';
 
 
-export function StyledComponentsProvider({ children }: Props) {
+export function StyledComponentsProvider({ children }: ProviderProps) {
   return (
     <ThemeProvider theme={theme}>
       {children}

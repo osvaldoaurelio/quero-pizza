@@ -1,4 +1,3 @@
-import { useLocalStorage } from './useLocalStorage';
-import { useTheme } from './useTheme';
-
-export { useLocalStorage, useTheme };
+export * from './useIntersectionObserver';
+export * from './useLocalStorage';
+export * from './useTheme';
