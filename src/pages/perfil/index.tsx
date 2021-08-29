@@ -11,7 +11,6 @@ import * as S from './styles';
 export function Perfil() {
   const [name] = useLocalStorage<string>('name');
   const [lastOrders] = useLocalStorage<Order[]>('last_orders', []);
-  const useAddressStoraged = useLocalStorage<string>('address');
 
   return (
     name ? (
@@ -21,7 +20,6 @@ export function Perfil() {
         <Main
           name={name}
           lastOrders={lastOrders}
-          useAddressStoraged={useAddressStoraged}
         />
 
         <Footer />

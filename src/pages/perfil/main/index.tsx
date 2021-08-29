@@ -1,50 +1,22 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import perfilLogo from '~assets/images/perfil-logo.png';
+import { useLocalStorage } from '~hooks';
+import { AddressModal } from '~pages/perfil/address-modal';
 
 import { MainProps } from './types';
 import * as S from './styles';
 
-import perfilLogo from '~assets/images/perfil-logo.png';
-
-export function Main({ name, useAddressStoraged, lastOrders }: MainProps) {
+export function Main({ name, lastOrders }: MainProps) {
   const history = useHistory();
 
-  const [address, setAddress] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isValidAddress, setIsValidAddress] = useState(false);
 
-  const [addressStoraged, setAddressStoraged] = useAddressStoraged;
+  const [addressStoraged, setAddressStoraged] = useLocalStorage<string>('address');
 
-  const validateAddress = (value: string) => {
-    if (value.length < 10) return false;
-    if ((value.match(/ /g) ?? []).length < 4) return false;
-    if ((value.match(/\d/g) ?? []).length < 1) return false;
-    if ((value.match(/qd?|lt?|nº?|(av)|(rua)|(km)/gi) ?? []).length < 1) return false
-
-    return true;
-  };
-
-  const handleValidateAddress = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    const result = validateAddress(value.trim());
-
-    setIsValidAddress(() => {
-      if (result) setAddress(value);
-
-      return result;
-    });
-  };
-
-  const handleAddAddress = (event: FormEvent<EventTarget>) => {
-    event.preventDefault();
-
-    setAddressStoraged(() => {
-      setIsModalOpen(false);
-
-      return address;
-    });
-  };
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <S.MainContainer>
@@ -66,49 +38,23 @@ export function Main({ name, useAddressStoraged, lastOrders }: MainProps) {
         {addressStoraged ? (
           <S.WithAddress>
             <p>{addressStoraged}</p>
-            <button onClick={() => setIsModalOpen(true)}>
+            <button onClick={openModal}>
               <p>Se quiser mudar😎, é só clicar aqui😉</p>
             </button>
           </S.WithAddress>
         ) : (
           <S.WithoutAddress>
             <p>Ainda não tenho um endereço válido🤔</p>
-            <button onClick={() => setIsModalOpen(true)}>
+            <button onClick={openModal}>
               <p>Para Adicionar um😎, é só clicar aqui😉</p>
             </button>
           </S.WithoutAddress>
         )}
-        <S.StyledModal
-          isValidAddress={isValidAddress}
+        <AddressModal
           isOpen={isModalOpen}
-          onRequestClose={() => setIsModalOpen(false)}
-        >
-          <header>
-            <h2>Adicione um endereço para entrega</h2>
-          </header>
-          <section>
-            <form onSubmit={handleAddAddress}>
-              <input
-                autoFocus
-                onChange={handleValidateAddress}
-                defaultValue=""
-                placeholder="Ex.: Av. Ímpares, Q. 1, L. 3, Nº. 5, Setor Sete"
-              />
-            </form>
-            <aside>
-              <p>Lembrado que um bom endereço precisa:</p>
-              <ul>
-                <li>Começar com tipo e nome de Logradouro</li>
-                <li>Informar os Complementos (Q/L/Apt/Nº)</li>
-                <li>E finalizar com Setor/Bairro e/ou CEP</li>
-              </ul>
-            </aside>
-          </section>
-          <footer>
-            <button onClick={() => setIsModalOpen(false)}>Cancelar</button>
-            <button onClick={handleAddAddress} disabled={!isValidAddress}>Adicionar</button>
-          </footer>
-        </S.StyledModal>
+          closeModal={closeModal}
+          setAddressStoraged={setAddressStoraged}
+        />
       </S.AddressContent>
 
       <S.LastOrdersContent>

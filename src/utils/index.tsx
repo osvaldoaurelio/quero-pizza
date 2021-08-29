@@ -8,6 +8,15 @@ export const pluralize = (quantity: number, singularWord: string, pluralWord: st
   return quantity === 1 ? singularWord : pluralWord;
 };
 
+export const validateAddress = (value: string) => {
+  if (value.length < 10) return false;
+  if ((value.match(/ /g) ?? []).length < 4) return false;
+  if ((value.match(/\d/g) ?? []).length < 1) return false;
+  if ((value.match(/qd?|lt?|nº?|(av)|(rua)|(km)/gi) ?? []).length < 1) return false
+
+  return true;
+};
+
 export const numberFormat = {
   toMoney(value?: number) {
     return Intl.NumberFormat('pt-BR', {
