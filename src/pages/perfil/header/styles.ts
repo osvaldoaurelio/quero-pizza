@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { StyledProps } from './types';
 
 export const HeaderContainer = styled.header`
-  margin: -1rem -1rem 1rem;
   position: relative;
   height: 10vh;
 

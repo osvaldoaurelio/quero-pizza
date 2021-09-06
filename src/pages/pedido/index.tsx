@@ -45,7 +45,7 @@ export function Pedido() {
   };
 
   useEffect(() => {
-    redirect && history.push('/order');
+    redirect && history.push('/');
   }, [redirect, history]);
 
   useEffect(() => {

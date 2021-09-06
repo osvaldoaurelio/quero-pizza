@@ -6,7 +6,7 @@ const rollEyes = keyframes`
 
 export const MainContainer = styled.main`
   flex: 1;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
 `;
 
 export const ImageContent = styled.div`

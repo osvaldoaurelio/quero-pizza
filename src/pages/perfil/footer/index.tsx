@@ -54,7 +54,7 @@ export function Footer() {
     <S.FooterContainer>
       <h4>Outras opções:</h4>
       <button onClick={handleClear}>
-        <p>Limpar todas as minhas informações 🥺</p>
+        <p>Limpar todas as minhas informações ...🥺</p>
       </button>
     </S.FooterContainer>
   );

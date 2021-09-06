@@ -7,22 +7,22 @@ import { Footer } from './footer';
 import { useLocalStorage } from '~hooks';
 import { Order } from './types';
 import * as S from './styles';
+import { Bag } from '../../components';
 
 export function Perfil() {
   const [name] = useLocalStorage<string>('name');
   const [lastOrders] = useLocalStorage<Order[]>('last_orders', []);
 
+  if (!name) {
+    return <Redirect to="/" />
+  }
+
   return (
-    name ? (
-      <S.PerfilContainer>
-        <Header />
-
-        <Main name={name} lastOrders={lastOrders} />
-
-        <Footer />
-      </S.PerfilContainer>
-    ) : (
-      <Redirect to="/" />
-    )
+    <S.PerfilContainer>
+      <Header />
+      <Main name={name} lastOrders={lastOrders} />
+      <Footer />
+      <Bag />
+    </S.PerfilContainer>
   );
 };

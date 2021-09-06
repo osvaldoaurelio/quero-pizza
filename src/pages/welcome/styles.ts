@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-export const PerfilContainer = styled.div`
+export const WelcomeContainer = styled.div`
   position: relative;
-  min-height: 100vh;
 `;

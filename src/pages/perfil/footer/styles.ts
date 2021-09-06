@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const FooterContainer = styled.footer`
+  padding-inline: 1rem;
+
   h4 {
     font-size: 1rem;
     margin-block-end: 0.5rem;

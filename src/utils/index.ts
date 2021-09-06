@@ -1,3 +1,5 @@
+import { BagItem } from '~components/bag/types';
+
 export const keyMaker = (key: string) => `qU&r0-þiZz@:${key}`; 
 
 export const size = (target?: string | any[]) => target?.length ?? 0;
@@ -17,11 +19,30 @@ export const validateAddress = (value: string) => {
   return true;
 };
 
+export const extratFromBag = {
+  totalQuantity(bag?: BagItem[]): number | string {
+    const quantity = bag?.reduce((item, { itemQuantity }) => item + itemQuantity, 0) ?? 0;
+
+    return quantity <= 9 ? quantity : '+9';
+  },
+  totalPrice(bag?: BagItem[]) {
+    return numberFormat.toMoney(
+      bag?.reduce((price, { itemTotalPrice }) => price + numberFormat.fromMoney(itemTotalPrice), 0)
+    );
+  },
+};
+
 export const numberFormat = {
   toMoney(value?: number) {
     return Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     }).format(value ?? 0);
+  },
+  fromMoney(value: string) {
+    return Number(value.replace(/\D/g, '')) / 100
+  },
+  toDate(value?: string) {
+    return '';
   },
 };
