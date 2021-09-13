@@ -4,6 +4,7 @@ import { StyledProps } from './types';
 
 export const HeaderContainer = styled.header`
   position: relative;
+  margin: -1rem 0 0 -1rem;
   height: 10vh;
 
   h2 {
@@ -11,6 +12,14 @@ export const HeaderContainer = styled.header`
     top: 22px;
     left: 50%;
     transform: translate(-50%);
+  }
+
+  button {
+    position: fixed;
+    top: 1.75rem;
+    right: 1rem;
+    border: none;
+    background-color: transparent;
   }
 
   svg {
@@ -39,6 +48,10 @@ export const IconContainer = styled.div.attrs<StyledProps>(({ offsetOpacity }) =
   background-color: ${({ theme }) => theme.colors.primary};
 
   h2 {
+    color: ${({ theme }) => theme.colors.textOnPrimary};
+  }
+  
+  button {
     color: ${({ theme }) => theme.colors.textOnPrimary};
   }
 

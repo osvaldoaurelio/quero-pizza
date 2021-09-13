@@ -1,4 +1,4 @@
-import { BagItem } from '~components/bag/types';
+import { BagItem } from '~types';
 
 export const keyMaker = (key: string) => `qU&r0-þiZz@:${key}`; 
 
@@ -23,7 +23,7 @@ export const extratFromBag = {
   totalQuantity(bag?: BagItem[]): number | string {
     const quantity = bag?.reduce((item, { itemQuantity }) => item + itemQuantity, 0) ?? 0;
 
-    return quantity <= 9 ? quantity : '+9';
+    return quantity <= 9 ? `0${quantity}` : '9+';
   },
   totalPrice(bag?: BagItem[]) {
     return numberFormat.toMoney(

@@ -52,9 +52,18 @@ export const GlobalStyle = createGlobalStyle`
 
   a, button {
     transition: all 0.3s;
+
+    &:active {
+      opacity: 0.975;
+      transform: scale(0.975);
+    }
   }
 
   * + svg {
     margin-inline-start: 0.5rem;  
+  }
+
+  .ReactModalPortal {
+    z-index: 9999;
   }
 `;

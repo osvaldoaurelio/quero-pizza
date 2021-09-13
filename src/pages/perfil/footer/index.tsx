@@ -9,9 +9,9 @@ import { Order } from './types';
 import * as S from './styles';
 
 export function Footer() {
-  const [redirect, setRedirect] = useState(false);
-
   const history = useHistory();
+
+  const [redirect, setRedirect] = useState(false);
 
   const [, setName] = useLocalStorage<string>('name');
   const [bag, setBag] = useLocalStorage<Order[]>('bag', []);
@@ -31,6 +31,7 @@ export function Footer() {
         setAddress(() => {
           setLastOrders(() => {
             setRedirect(true);
+
             return [];
           });
           return '';

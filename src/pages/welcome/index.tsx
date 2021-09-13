@@ -5,9 +5,9 @@ import { Menu } from './menu';
 import { Main } from './main';
 import { Info } from './info';
 
-import { Bag } from '~components';
-import { useIntersectionObserver } from '~hooks';
+import { BagButton } from '~components';
 import { info, menu } from '~data';
+import { useIntersectionObserver } from '~hooks';
 import { shuffle } from '~utils';
 
 import * as S from './styles';
@@ -25,7 +25,7 @@ export function Welcome() {
       <Info info={words} />
       <Menu observerViewRef={observerViewRef} menu={menu} />
       <Main scrollViewRef={scrollViewRef} menu={menu} />
-      <Bag />
+      <BagButton />
     </S.WelcomeContainer>
   );
 }
