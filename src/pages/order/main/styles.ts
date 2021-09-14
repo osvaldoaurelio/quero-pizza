@@ -40,6 +40,20 @@ export const PaymentContent = styled(AddressContent)`
     padding: 0.25rem 0.5rem;
     font-size: 1.25rem;
   }
+
+  p {
+    font-size: 1rem;
+    margin-block-start: 0.25rem;
+  }
+`;
+
+export const Change = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+  font-size: 1rem;
+  margin-block-start: 0.25rem;
 `;
 
 export const ButtonContent = styled(AddressContent)``;

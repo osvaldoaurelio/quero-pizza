@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router';
 
 import { AddressModal } from '~pages/perfil/address-modal';
@@ -6,13 +6,14 @@ import { extratFromBag } from '~utils';
 
 import { MainProps } from './types';
 import * as S from './styles';
+import { useLocalStorage } from '../../../hooks';
 
-export function Main({ bag, addressStoraged, setAddressStoraged }: MainProps) {
+export function Main({ bag, payment, handleSelectChange, addressStoraged, setAddressStoraged }: MainProps) {
   const history = useHistory();
 
-  const selectRef = useRef(null);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const [change, setChange] = useLocalStorage('change', '0');
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -45,12 +46,22 @@ export function Main({ bag, addressStoraged, setAddressStoraged }: MainProps) {
 
       <S.PaymentContent>
         <h4>Forma de pagamento:</h4>
-        <select name="payment" defaultValue="CREDIT" ref={selectRef}>
+        <select name="payment" value={payment} onChange={handleSelectChange}>
           <option value="CREDIT">cartão de crédito</option>
           <option value="DEBIT">cartão de débito</option>
           <option value="CASH">em dinheiro</option>
           <option value="PIX">via pix</option>
         </select>
+        {payment === 'CASH' && (
+          <S.Change>
+            <p>Troco para:</p>
+            <input type="number" value={change} onChange={(event) => setChange(event.target.value)}/>
+          </S.Change>
+        )}
+
+        {payment === 'PIX' && (
+          <p>Pix para pagamento: 6298765432</p>
+        )}
       </S.PaymentContent>
 
       <S.ButtonContent>
@@ -63,13 +74,15 @@ export function Main({ bag, addressStoraged, setAddressStoraged }: MainProps) {
         <h4>Resumo dos valores:</h4>
         <table>
           <thead>
-            <th>Qtd</th>
-            <th>Nome</th>
-            <th>Valor</th>
+            <tr>
+              <th>Qtd</th>
+              <th>Nome</th>
+              <th>Valor</th>
+            </tr>
           </thead>
           <tbody>
-            {bag?.map(({ itemQuantity, name, itemTotalPrice }) => (
-              <tr>
+            {bag?.map(({ itemQuantity, name, itemTotalPrice }, index) => (
+              <tr key={`${index}-${name}`}>
                 <td>{itemQuantity}</td>
                 <td>{name}</td>
                 <td>{itemTotalPrice}</td>
@@ -77,8 +90,10 @@ export function Main({ bag, addressStoraged, setAddressStoraged }: MainProps) {
             ))}
           </tbody>
           <tfoot>
-            <td colSpan={2}>Total</td>
-            <td>{extratFromBag.totalPrice(bag)}</td>
+            <tr>
+              <td colSpan={2}>Total</td>
+              <td>{extratFromBag.totalPrice(bag)}</td>
+            </tr>
           </tfoot>
         </table>
       </S.SumaryContent>

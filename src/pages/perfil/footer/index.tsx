@@ -14,6 +14,8 @@ export function Footer() {
   const [redirect, setRedirect] = useState(false);
 
   const [, setName] = useLocalStorage<string>('name');
+  const [, setPayment] = useLocalStorage<string>('payment');
+  const [, setChange] = useLocalStorage<string>('change');
   const [bag, setBag] = useLocalStorage<Order[]>('bag', []);
   const [, setAddress] = useLocalStorage<string>('address');
   const [, setLastOrders] = useLocalStorage<Order[]>('last_orders');
@@ -27,16 +29,22 @@ export function Footer() {
 
   const clearLocalStorage = () => {
     setName(() => {
-      setBag(() => {
-        setAddress(() => {
-          setLastOrders(() => {
-            setRedirect(true);
+      setPayment(() => {
+        setChange(() => {
+          setBag(() => {
+            setAddress(() => {
+              setLastOrders(() => {
+                setRedirect(true);
 
+                return [];
+              });
+              return '';
+            });
             return [];
           });
           return '';
         });
-        return [];
+        return '';
       });
       return '';
     });

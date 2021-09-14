@@ -46,3 +46,10 @@ export const numberFormat = {
     return '';
   },
 };
+
+export enum Payment {
+  CREDIT = 'cartão de crédito',
+  DEBIT = 'cartão de débito',
+  CASH = 'em dinheiro',
+  PIX = 'via pix',
+};

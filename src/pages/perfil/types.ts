@@ -1,3 +1,5 @@
+import { Payment } from '~utils';
+
 type Item = {
   id?: number;
   name: string;
@@ -7,16 +9,19 @@ type Item = {
   price: number;
 };
 
-enum Payment {
-  CREDIT = 'cartão de crédito',
-  DEBIT = 'cartão de débito',
-  CASH = 'em dinheiro',
-  PIX = 'via pix',
+type BagItem = {
+  name: string;
+  itemTotalPrice: string;
+  psText: string;
+  itemQuantity: number;
 };
 
 type Order = {
-  payment: Payment;
-  items: Item[];
+  payment: Payment | string;
+  address?: string;
+  items?: Item[];
+  bagItems?: BagItem[];
+  change?: string;
 };
 
 export type { Order };
